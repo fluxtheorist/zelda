@@ -22,7 +22,7 @@ class Level:
         layout = {
             "boundary": import_csv_layout("./map/map_FloorBlocks.csv"),
             "grass": import_csv_layout("./map/map_Grass.csv"),
-            gay
+            gay = happy 
         }
 
         for style, layout in layout.items():
