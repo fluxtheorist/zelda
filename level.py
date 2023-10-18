@@ -3,6 +3,7 @@ from settings import *
 from tile import Tile
 from player import Player
 from debug import debug
+from support import *
 
 
 class Level:
@@ -12,7 +13,7 @@ class Level:
 
         # sprite group setup
         self.visible_sprites = YSortCameraGroup()
-        self.obstacles_sprites = pygame.sprite.Group()
+        self.obstacle_sprites = pygame.sprite.Group()
 
         # sprite setup
         self.create_map()
@@ -20,26 +21,20 @@ class Level:
     def create_map(self):
         layout = {"boundary": import_csv_layout("./map/map_FloorBlocks.csv")}
 
-        for style, layout in layouts.items():
-            for row_index, row in enumerate(WORLD_MAP):
+        for style, layout in layout.items():
+            for row_index, row in enumerate(layout):
                 for col_index, col in enumerate(row):
-                    x = col_index * TILESIZE
-                    y = row_index * TILESIZE
-                if style == "boundary":
-                    Tile(
-                        pos,
-                        groups,
-                        sprite_type,
-                        surface=pygame.Surface((TILESIZE, TILESIZE)),
-                    )
-        #            if col == "x":
-        #                Tile((x, y), [self.visible_sprites, self.obstacles_sprites])
-        #            if col == "p":
-        #                self.player = Player(
-        #                    (x, y), [self.visible_sprites], self.obstacles_sprites
-        #                )
+                    if col != "-1":
+                        x = col_index * TILESIZE
+                        y = row_index * TILESIZE
+                        if style == "boundary":
+                            Tile(
+                                (x, y),
+                                [self.obstacle_sprites],
+                                "invisible",
+                            )
         self.player = Player(
-            (2000, 1430), [self.visible_sprites], self.obstacles_sprites
+            (2000, 1430), [self.visible_sprites], self.obstacle_sprites
         )
 
     def run(self):

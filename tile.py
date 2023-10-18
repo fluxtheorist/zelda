@@ -8,6 +8,6 @@ class Tile(pygame.sprite.Sprite):
     ):
         super().__init__(groups)
         self.sprite_type = sprite_type
-        self.image = pygame.image.load("./graphics/test/rock.png").convert_alpha()
+        self.image = surface
         self.rect = self.image.get_rect(topleft=pos)
         self.hitbox = self.rect.inflate(0, -10)
