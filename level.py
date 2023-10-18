@@ -19,7 +19,10 @@ class Level:
         self.create_map()
 
     def create_map(self):
-        layout = {"boundary": import_csv_layout("./map/map_FloorBlocks.csv")}
+        layout = {
+            "boundary": import_csv_layout("./map/map_FloorBlocks.csv"),
+            "grass": import_csv_layout("./map/map_Grass.csv"),
+        }
 
         for style, layout in layout.items():
             for row_index, row in enumerate(layout):
