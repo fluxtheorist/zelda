@@ -24,7 +24,8 @@ class Level:
             "grass": import_csv_layout("./map/map_Grass.csv"),
             "object": import_csv_layout("./map/map_Objects.csv"),
         }
-
+        graphics = {"grass": import_folder("./graphics/Grass")}
+        print(graphics)
         for style, layout in layout.items():
             for row_index, row in enumerate(layout):
                 for col_index, col in enumerate(row):
@@ -37,6 +38,12 @@ class Level:
                                 [self.obstacle_sprites],
                                 "invisible",
                             )
+                        if style == "grass":
+                            # grass add
+                            pass
+                        if style == "object":
+                            # object add
+                            pass
         self.player = Player(
             (2000, 1430), [self.visible_sprites], self.obstacle_sprites
         )
